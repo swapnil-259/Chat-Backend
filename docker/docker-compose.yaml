@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+
+  90_north_django:
+    build:
+      context: .
+    container_name: north_django
+    restart: always
+    volumes:
+      - ../:/90_north
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    ports:
+      - 8088:8000
+
+
+  90_north_postgres:
+    image: postgres:15
+    container_name: north_postgres
+    env_file:
+      - ../env/postgres.env
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5438:5432
+
+  90_porth_pgadmin:
+    image : dpage/pgadmin4
+    container_name: north_pgadmin
+    restart: always
+    env_file:
+      - ../env/pgadmin.env
+    ports:
+      - 98:80
+    depends_on:
+      - 90_north_postgres
+    volumes:
+      - ./pgadmin_data:/var/lib/pgadmin/storage/
+  
+volumes:
+    pgadmin_data:
+    postgres_data:
