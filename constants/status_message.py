@@ -1,0 +1,6 @@
+MISSING_REQUIRED_FIELDS = "Missing required fields"
+USER_ALREADY_EXISTS = "User already exists"
+USER_CREATED_SUCCESSFULLY = "User created Successfully"
+USER_LOGGED_IN_SUCCESSFULLY = "User logged in successfully"
+INVALID_CREDENTIALS = "Invalid credentials"
+USER_LOGGED_OUT_SUCCESSFULLY = "User logged out successfully"
