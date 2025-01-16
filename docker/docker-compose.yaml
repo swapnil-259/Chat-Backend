@@ -13,7 +13,6 @@ services:
     ports:
       - 8088:8000
 
-
   90_north_postgres:
     image: postgres:15
     container_name: north_postgres
@@ -25,7 +24,7 @@ services:
       - 5438:5432
 
   90_porth_pgadmin:
-    image : dpage/pgadmin4
+    image: dpage/pgadmin4
     container_name: north_pgadmin
     restart: always
     env_file:
@@ -36,7 +35,16 @@ services:
       - 90_north_postgres
     volumes:
       - ./pgadmin_data:/var/lib/pgadmin/storage/
-  
+
+  90_north_redis:
+    image: redis:6.2
+    container_name: north_redis
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis_data:/data
 volumes:
-    pgadmin_data:
-    postgres_data:
+  pgadmin_data:
+  postgres_data:
+  redis_data:

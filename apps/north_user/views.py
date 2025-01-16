@@ -47,3 +47,21 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return JsonResponse({"msg": status_message.USER_LOGGED_OUT_SUCCESSFULLY})
+
+
+def get_users(request):
+    users = User.objects.all()
+    return JsonResponse(
+        {
+            "data": [
+                {
+                    "id": user.id,
+                    "username": user.username,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                    "email": user.email,
+                }
+                for user in users
+            ]
+        }
+    )

@@ -2,3 +2,4 @@ env/
 pgadmin_data/
 postgres_data/
 secret.py
+redis_data/
